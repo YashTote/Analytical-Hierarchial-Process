@@ -1,13 +1,70 @@
 .matrix
 {
     position: fixed;
-    top: 50%;
+    top: 54%;
     left: 50%;
+    height: 75%;
+    width: 55%;
     transform: translate(-50%,-50%);
-    background-color: #fff;
-    padding: 50px;
+    background-color: #f5f0eb;
+    padding-top: 0px;
+    padding-left: 18px;
+    padding-right: 0px;
+    padding-bottom: 20px;
     z-index: 10000;
+    border-radius: 11px;
     
+}
+.submit-div
+{
+  margin-top: 5%;
+}
+.submit-btn
+{
+  margin-bottom: 10%;
+}
+.crit-quantity
+{
+  margin-top: 5%;
+  margin-left: 10px;
+}
+.form-1
+{
+  margin-top: 1%;
+}
+.head1{
+  padding-top: 2%;
+}
+.crit-info
+{
+ width: 100%;
+ /* margin-top: 3%; */
+}
+.X-column
+{
+  width: 7%;
+  padding-top: 0%;
+}
+
+.data-fields
+{
+  margin-top: 10px;
+  width: 92%;
+  display: inline;
+}
+.exit-btn
+{
+  border-radius: 4px;
+  border-width: 0px;
+  /* background-color: #FFE7CC; */
+  /* background-color: red; */
+  padding-top: 0%;
+  margin-top: 1px;
+  padding-right: 7px;
+  padding-left: 27px;
+  padding-bottom: 16px;
+  margin-left: 50px;
+  
 }
 .overlay
 {
@@ -23,7 +80,7 @@
 }
 .margin-top
 {
-  margin-top: 1000px;
+  margin-top: 100px;
   margin-bottom: 10px;
   margin-left: 320px;
 }

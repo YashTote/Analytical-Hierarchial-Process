@@ -1,8 +1,20 @@
-.margin-top
-{
+.button-container {
+  /* position: absolute; */
   margin-top: 100px;
-  margin-bottom: 10px;
-  margin-left: 320px;
+}
+
+.crit-location {
+  font-family: Volkorn;
+  background: burlywood;
+  border: 2px solid black;
+  position: relative;
+  cursor: pointer;
+  /* max-width: 180%; */
+  margin-top: auto;
+  max-height: 100%;
+  margin-left: 47%;
+  font-size: 100%;
+  text-align: center;
 }
 .App {
   text-align: center;
