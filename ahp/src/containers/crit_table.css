@@ -1,0 +1,86 @@
+/* default styling. Nothing to do with freexing first row and column */
+main {display: flex;}
+.div-top{
+  text-align: center;
+}
+main > * {border: 1px solid;}
+table {border-collapse: collapse; 
+    font-family: helvetica; 
+
+     
+  }
+td, th {border:  1px solid;
+      padding: 10px;
+      min-width: 50px;
+      background: white;
+      box-sizing: border-box;
+      text-align: left;
+}
+.table-container {
+  position: relative;
+  text-align: center;
+  margin-top:4%;
+  width: 1100px; 
+   display: inline-flex;
+/*   overflow: scroll; */
+}
+
+thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+thead th:first-child {
+  left: 0;
+  z-index: 3;
+}
+
+tfoot {
+  position: -webkit-sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+tfoot td {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  background: hsl(20, 50%, 70%);
+}
+
+tfoot td:first-child {
+  z-index: 3;
+}
+
+tbody {
+  overflow: scroll;
+  height: 200px;
+}
+
+/* MAKE LEFT COLUMN FIXEZ */
+
+tr > :nth-child(1),
+tr > :nth-child(2)  {
+  position: -webkit-sticky;
+  position: sticky; 
+  background: hsl(180, 56%, 77%);
+  left: 0; 
+}
+tr> :nth-child(1) > :nth-child(){background-color: blue;}
+/* don't do this */
+#equal{background-color:hsl(20, 50%, 70%);}
+
+
+table {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+table:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 import Hamburger from "./containers/top-tab";
-import Homemain from "./containers/homemain";
 import Intro from "./containers/intro";
+import Crit_Table from "./containers/crit_table";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -37,7 +37,8 @@ function App() {
         <div>
           <Hamburger />
         </div>
-        <div class="button-container">
+        <div>
+          <Crit_Table value={data.crit}/>
         </div>
       </div>
     );
