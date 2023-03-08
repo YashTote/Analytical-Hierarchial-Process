@@ -5,6 +5,16 @@
     color: azure;
    
   }
+  .green-text{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    background-color:rgb(150, 247, 150);
+  }
+  .red-text{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    background-color: rgb(241, 76, 76);
+  }
   .info{
     /* background: #e2e1e0; */
     color: rgb(81, 88, 92);
@@ -13,14 +23,30 @@
     padding-top: 2px;
     padding-bottom: 6px;
     padding-left:10px;
-    
     text-align: left;
+  }
+  .dynamic-text{
+    margin-top:4%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  .link{
+    font-size: 13px ;
+    text-decoration: underline;
+    color: blue;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    left: 0;
+    
   }
  .CR-head{
   text-align: left;
   padding-left: 10px;
  }
   .card {
+    text-align:center;
     
     background: #fff;
     border-width: 1px;

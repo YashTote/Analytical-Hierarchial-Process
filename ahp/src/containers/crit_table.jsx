@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import "./crit_table.css"
-import Cr_Ratio from "../verify/cr_ratio"; 
+import "./crit_table.css";
+import Cr_Ratio from "../verify/cr_ratio";
 import { updateName } from "../slices/tableSlice";
+import Normal_matrix from "./Criteria_Matrix/normal_matrix";
 
 export default function Crit_Table({ value }) {
   // value = 5;
@@ -10,7 +11,7 @@ export default function Crit_Table({ value }) {
 
   let crit_name = new Array(size + 1);
   let crit_choice = new Array(size + 1);
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
   const initialNameState = new Map();
   let counter = 1;
   for (let i = 1; i <= value - 1; i++) {
@@ -22,6 +23,10 @@ export default function Crit_Table({ value }) {
       initialNameState.set(`${i}-${j}`, `${i}-${j}-2`);
       crit_name[counter] = temp;
       counter++;
+      const id = `${i}-${j}`;
+      const crit_name_slice = undefined;
+      const crit_choice_slice = undefined;
+      dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
     }
   }
 
@@ -29,7 +34,7 @@ export default function Crit_Table({ value }) {
   for (let i = 1; i <= value - 1; i++) {
     for (let j = i + 1; j <= value; j++) {
       let temp = new Array(11);
-      for (let k = 1; k <= 10; k++) {
+      for (let k = 1; k <= 9; k++) {
         temp[k] = {
           key: `${i}-${j}-${k + 2}`,
           name: `O-${i}-${j}`,
@@ -41,37 +46,27 @@ export default function Crit_Table({ value }) {
     }
   }
 
-  const [selectName, setSelectName] = useState(new Map());
-  const [selectChoice, setSelectChoicename] = useState(new Map());
+  const selectName = new Map();
+  const selectChoice = new Map();
 
   const handleNameChange = (e) => {
+    selectName.set(e.target.name, e.target.value);
+    const id = e.target.value.substring(0, 3);
+    const crit_name_slice = e.target.value;
+    const crit_choice_slice = selectChoice.get(`O-${id}`);
 
-    const newMap = new Map();
-    newMap.set(e.target.name, e.target.value);
-    setSelectName(newMap);
-   
-    const id= e.target.value.substring(0,3);
-    const crit_name = e.target.value;
-    const crit_choice = selectChoice.get(`O-${id}`);
-
-    dispatch(updateName({id,crit_name,crit_choice}));
+    dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
   };
 
   const handleChoiceChange = (e) => {
+    selectChoice.set(e.target.name, e.target.value);
+    const id = e.target.value.substring(0, 3);
+    const crit_choice_slice = e.target.value;
+    const crit_name_slice = selectName.get(`C-${id}`);
 
-    const newMap = new Map();
-    newMap.set(e.target.name, e.target.value);
-    setSelectChoicename(newMap); 
-
-    const id= e.target.value.substring(0,3);
-    const crit_choice = e.target.value;
-    const crit_name = selectName.get(`C-${id}`); 
-
-    
-    dispatch(updateName({id, crit_name, crit_choice}));
-
+    dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
   };
-  
+
   const tbody = [];
   for (let i = 1; i < crit_name.length; i++) {
     const name = crit_name[i];
@@ -115,7 +110,7 @@ export default function Crit_Table({ value }) {
   //   const [crit_radio]
   return (
     <div class="div-top">
-    <div class="table-container">
+      <div class="table-container  div-top">
         <table class="unfixed-table">
           <thead>
             <tr>
@@ -125,10 +120,11 @@ export default function Crit_Table({ value }) {
             </tr>
           </thead>
           <tbody>{tbody}</tbody>
-        </table>  
-         <Cr_Ratio/>    
+        </table>
+        {/* <Cr_Ratio/>     */}
+        <Normal_matrix value={value} />
+      </div>
+      
     </div>
-        
-   </div>
   );
 }

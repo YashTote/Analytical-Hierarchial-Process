@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
-import './cr_ratio.css'
+// import './cr_ratio.css'
 export default function Cr_Ratio(){
-  
-  const cr_obj = useSelector(state => state.crit);
-  console.log(cr_obj["1-2"]);
+   
+  const CR = useSelector(state => state.Cr_Ratio   );
+  // console.log(CR);
+  console.log("BUSTED")
 
   // The greate C.R ratio logic;
   
