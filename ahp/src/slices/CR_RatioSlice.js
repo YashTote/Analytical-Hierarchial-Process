@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = 0;
+let initialState = {};
 
 const CR_Ratio = createSlice({
   name: "CR_Ratio",
   initialState,
   reducers: {
-    updateCR_Ratio: (state, action) => ({
-      state : action.payload
-    }),
+    updateCR_Ratio: (state, action) => {
+      const {toShowStatus, C_R} = action.payload;
+      state[0] = {"current_status": toShowStatus, "C_R": C_R};
+    },
   },
 });
 

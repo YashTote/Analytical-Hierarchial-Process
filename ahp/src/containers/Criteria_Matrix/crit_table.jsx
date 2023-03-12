@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useE } from "react";
 import { useDispatch } from "react-redux";
 import "./crit_table.css";
-import Cr_Ratio from "../verify/cr_ratio";
-import { updateName } from "../slices/tableSlice";
-import Normal_matrix from "./Criteria_Matrix/normal_matrix";
+import Cr_Ratio from "../../verify/cr_ratio";
+import { updateName } from "../../slices/tableSlice";
+import Normal_matrix from "./normal_matrix";
+import Cr_box from "./Cr_Box";
 
 export default function Crit_Table({ value }) {
   // value = 5;
@@ -17,8 +18,8 @@ export default function Crit_Table({ value }) {
   for (let i = 1; i <= value - 1; i++) {
     for (let j = i + 1; j <= value; j++) {
       let temp = [
-        { key: `${i}-${j}-1`, name: `C-${i}-${j}`, label: `Crit${i}` },
-        { key: `${i}-${j}-2`, name: `C-${i}-${j}`, label: `Crit${j}` },
+        { key: `${i}-${j}-1`, name: `C-${i}-${j}`, label: ` Crit ${i}` },
+        { key: `${i}-${j}-2`, name: `C-${i}-${j}`, label: ` Crit ${j}` },
       ];
       initialNameState.set(`${i}-${j}`, `${i}-${j}-2`);
       crit_name[counter] = temp;
@@ -72,9 +73,9 @@ export default function Crit_Table({ value }) {
     const name = crit_name[i];
     const choice = crit_choice[i];
     tbody.push(
-      <tr>
+      <tr className="matrix_tr">
         {name.map((e) => (
-          <td>
+          <td className="matrix_td ">
             <label htmlFor={e.key}>
               <input
                 type="radio"
@@ -89,7 +90,7 @@ export default function Crit_Table({ value }) {
           </td>
         ))}
         {choice.map((e) => (
-          <td>
+          <td className="matrix_td">
             <label htmlFor={e.key}>
               <input
                 type="radio"
@@ -111,20 +112,19 @@ export default function Crit_Table({ value }) {
   return (
     <div class="div-top">
       <div class="table-container  div-top">
-        <table class="unfixed-table">
-          <thead>
-            <tr>
-              <th colSpan={2}>More Important (1st or 2nd)</th>
-              <th id="equal">Equal</th>
-              <th colSpan="10">How much More</th>
+        <table className="matrix_table">
+          <thead className="matrix_thead">
+            <tr className="matrix_tr">
+              <th className="matrix_th" colSpan={2}>More Important (1st or 2nd)</th>
+              <th className="matrix_th" id="equal">Equal</th>
+              <th className="matrix_th" colSpan="10">How much More ?</th>
             </tr>
           </thead>
-          <tbody>{tbody}</tbody>
+          <tbody className="matrix_tbody">{tbody}</tbody>
         </table>
-        {/* <Cr_Ratio/>     */}
-        <Normal_matrix value={value} />
+        <Cr_box/>
       </div>
-      
+        <Normal_matrix value={value} />
     </div>
   );
 }

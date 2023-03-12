@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import Hamburger from "./containers/top-tab";
 import Intro from "./containers/intro";
-import Crit_Table from "./containers/crit_table";
+import Crit_Table from "./containers/Criteria_Matrix/crit_table";
+import EigenTable from "./containers/eigentable";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -39,6 +40,7 @@ function App() {
         </div>
         <div>
           <Crit_Table value={data.crit}/>
+          <EigenTable/>
         </div>
       </div>
     );
