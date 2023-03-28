@@ -21,7 +21,7 @@ function App() {
   }
   if (isOpen) {
     return (
-      <div>
+      <div className="App">
         <div>
           <Hamburger />
         </div>
@@ -34,7 +34,7 @@ function App() {
   else {
     console.log(data.crit, data.alt);
     return (
-      <div>
+      <div className="App">
         <div>
           <Hamburger />
         </div>

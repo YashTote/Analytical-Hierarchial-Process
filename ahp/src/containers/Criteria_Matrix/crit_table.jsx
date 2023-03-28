@@ -6,6 +6,41 @@ import { updateName } from "../../slices/tableSlice";
 import Normal_matrix from "./normal_matrix";
 import Cr_box from "./Cr_Box";
 
+class TableSingleRow {
+
+  constructor(width, criteriaName, tableData, tableTitle){
+    this.width = width;
+    this.criteriaName = criteriaName;
+    this.tableData = tableData;
+    this.tableTitle = tableTitle;
+  }
+  //If the criteriaName comes as an Array, we can easily map over each element and create an variable that holds the thead structure.
+
+   TableStruct(){
+    const titleRow = this.criteriaName.map(e =>(<th className="border border-slate-600 bg-slate-300">{e}</th>));
+    const valueRow = this.tableData.map(e => (<td className="border border-slate-700 bg-slate-50 ">{e}</td>))
+    const tableStruct = (
+      <div className="TableSingleRow font-serif">
+        <div className="text-2xl font-semibold">{this.tableTitle}</div>
+    <table className="tableStruct w-2/3 text-lg border-collapse border border-slate-500 bg-slate-300">
+         <thead>
+           <tr>
+             <th className="border w-1/5 border-slate-600 bg-slate-300 ">Criteria Name</th>
+              {titleRow}
+           </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td className="border font-semibold border-slate-600 bg-slate-300">Values</td>
+              {valueRow}
+          </tr>
+         </tbody>
+    </table></div>) 
+    
+    return tableStruct;
+  }
+}
+
 export default function Crit_Table({ value }) {
   // value = 5;
   let size = (value * (value - 1)) / 2;
@@ -107,11 +142,16 @@ export default function Crit_Table({ value }) {
       </tr>
     );
   }
-
+  const random_index =[1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const random_index_name = ["Equal Importance","Equal to Moderate","Moderate IMP","Moderate to Strong","Strong IMP","Strong to Very Strong","Very Strong IMP","Very Strong to Extreme","Extreme IMPs",];
+  const random_index_table = new TableSingleRow(9, random_index_name, random_index, "Criteria Weight Reference");
   //   const [crit_radio]
   return (
-    <div class="div-top">
+    <div class="div-top"> 
+    {random_index_table.TableStruct()}
+      <div className="choice-title text-2xl font-serif font-semibold">Choice Matrix (Enter your choices here)</div> 
       <div class="table-container  div-top">
+       
         <table className="matrix_table">
           <thead className="matrix_thead">
             <tr className="matrix_tr">
@@ -124,6 +164,7 @@ export default function Crit_Table({ value }) {
         </table>
         <Cr_box/>
       </div>
+    
         <Normal_matrix value={value} />
     </div>
   );

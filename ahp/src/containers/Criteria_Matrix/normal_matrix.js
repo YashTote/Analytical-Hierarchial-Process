@@ -122,21 +122,30 @@ export default function Normal_matrix({ value }) {
             number += crit_choice[5];
             
           }
-          PW_matrix[i][j] = Number(number) - 2;
-          PW_matrix[j][i] = 1 / (Number(number) - 2);
+          let temp =  Number(number) - 2;
+          temp = temp.toFixed(3);
+          PW_matrix[i][j] = Number(temp);
+          temp = 1 / (Number(number) - 2);
+          temp = temp.toFixed(3);
+          PW_matrix[j][i] = Number(temp);
         } else {
           let number = crit_choice[4];
           if (crit_choice.length === 6) {
             number += crit_choice[5];
           }
-          PW_matrix[j][i] = Number(number) - 2;
-          PW_matrix[i][j] = 1 / (Number(number) - 2);
+          let temp = Number(number) - 2;
+          temp = temp.toFixed(3);
+          PW_matrix[j][i] = Number(temp);
+          temp = 1 / (Number(number) - 2);
+          temp = temp.toFixed(3);
+          PW_matrix[i][j] = Number(temp);
         }
       }
     }
   }
   const total_filled =  (value * (value - 1)) / 2;
-
+  console.log(filled);
+  console.log(total_filled);
   
   const PW_sum = new Array();
 
@@ -171,7 +180,9 @@ export default function Normal_matrix({ value }) {
     for (let j = 1; j <= value; j++) {
       num += N_matrix[i][j];
     }
-    eigen_vector[i] = num / Number(value);
+    let temp = num / Number(value);
+    temp = temp.toFixed(3);
+    eigen_vector[i] = Number(temp);
   }
 
   // dispatch(updateEigen(eigen_vector))

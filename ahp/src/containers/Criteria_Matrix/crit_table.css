@@ -3,13 +3,16 @@ main {display: flex;}
 .div-top{
   text-align: center;
 }
+.choice-title{
+  margin-top: 3%;
+}
 /* main > * {border: 1px solid;} */
 .matrix_table {
   border-collapse: collapse; 
   font-family: helvetica; 
   
    /* ENABLE WIDTH DURING FINAL BUILD */
-  /* width: 90%; */
+  width: 90%;
   }
 .matrix_td, .matrix_th {border:  1px solid;
   
@@ -22,7 +25,7 @@ main {display: flex;}
 .table-container {
   position: relative;
   text-align: center;
-  margin-top:4%;
+  margin-top:1%;
   width: 1500px; 
    display: inline-flex;
 /*   overflow: scroll; */
