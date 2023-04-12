@@ -1,7 +1,7 @@
-import React, { useE } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import "./crit_table.css";
-import Cr_Ratio from "../../verify/cr_ratio";
+
 import { updateName } from "../../slices/tableSlice";
 import Normal_matrix from "./normal_matrix";
 import Cr_box from "./Cr_Box";

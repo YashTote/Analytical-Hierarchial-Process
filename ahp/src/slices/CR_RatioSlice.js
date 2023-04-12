@@ -9,6 +9,7 @@ const CR_Ratio = createSlice({
     updateCR_Ratio: (state, action) => {
       const {toShowStatus, C_R} = action.payload;
       state[0] = {"current_status": toShowStatus, "C_R": C_R};
+      
     },
   },
 });

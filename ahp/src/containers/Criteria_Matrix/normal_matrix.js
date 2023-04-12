@@ -51,7 +51,7 @@ class TableMultipleRow{
   MultiTableStruct(){
     const titleRow = this.criteriaName.map(e =>(<th className="border border-slate-600 bg-slate-300">{e}</th>));
     const valueRow = [];
-    console.log(this.tableData);
+    // console.log(this.tableData);
     for (let i = 0; i < this.width; i++) {
       valueRow[i] = [];
       const valueRowTR = [];
@@ -88,6 +88,9 @@ class TableMultipleRow{
 
 export default function Normal_matrix({ value }) {
   const cr_obj = useSelector((state) => state.crit);
+  // const cr_obj1 = useSelector((state) => state.CrAndAltValue);
+  // console.log(cr_obj1);
+
   const dispatch = useDispatch();
   let PW_matrix = [];
 
@@ -144,8 +147,8 @@ export default function Normal_matrix({ value }) {
     }
   }
   const total_filled =  (value * (value - 1)) / 2;
-  console.log(filled);
-  console.log(total_filled);
+  // console.log(filled);
+  // console.log(total_filled);
   
   const PW_sum = new Array();
 
@@ -248,12 +251,25 @@ const PWTable = new TableMultipleRow(value,eigenNames, PW_matrix.slice(1), "Pair
 
 // console.log(N_matrix.slice(2));
 const N_matrixTable = new TableMultipleRow(value,eigenNames, N_matrix.slice(1) , "Normalised Matrix");
+// async function fetchData(){
 
+
+// function fetchData(){
+//   fetch('http://127.0.0.1:8000/dataHandle/criteria/add/')
+//   .then(response => response.json())
+//   .then(json => console.log(json));
+// }
+
+// const temp = (
+//   <button onClick={fetchData}>Click here</button>
+// )
 // console.log((PWTable_component));
 return (
-  <>
+  <> 
+   {/* {temp} */}
    {EigenTable.TableStruct()}
    {PWTable.MultiTableStruct()}
+  
    {N_matrixTable.MultiTableStruct()}
   </>
 ); 

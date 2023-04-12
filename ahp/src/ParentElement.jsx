@@ -1,20 +1,23 @@
-import { Fragment } from 'react'
+import React from 'react'
+import { BrowserRouter, Router, NavLink, Link } from 'react-router-dom'
+import AppRouter from './AppRouter'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
 const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Alternatives', href: '#', current: false },
-  { name: 'Final Result', href: '#', current: false },
-]
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
-
-export default function Hamburger() {
+    { name: 'Home', href: 'http://localhost:3000/home', current: true },
+    { name: 'Alternatives', href: 'http://localhost:3000/alternatives', current: false },
+    { name: 'Final Result', href: 'http://localhost:3000/alternatives', current: false },
+  ]
+  
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+  }
+  
+function ParentElement() {
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    
+    <div className='ParentElement'>
+      <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -58,11 +61,13 @@ export default function Hamburger() {
                         {item.name}
                       </a>
                     ))}
+                   
                   </div>
                 </div>
               </div>
 
-            </div>
+            </div> 
+            {/* <Link></Link> */}
           </div>
 
           <Disclosure.Panel className="sm:hidden">
@@ -86,5 +91,9 @@ export default function Hamburger() {
         </>
       )}
     </Disclosure>
+     <AppRouter/>
+    </div>
   )
 }
+
+export default ParentElement;
