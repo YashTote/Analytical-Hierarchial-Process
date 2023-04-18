@@ -1,0 +1,74 @@
+
+.heading{
+    text-align:center;
+    margin-top:10px;
+    color: azure;
+   
+  }
+  .green-text{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    background-color:rgb(150, 247, 150);
+  }
+  .red-text{
+    margin-top: 4%;
+    margin-bottom: 4%;
+    background-color: rgb(241, 76, 76);
+  }
+  .info{
+    /* background: #e2e1e0; */
+    color: rgb(81, 88, 92);
+    line-height: 20px ;
+    font-size:93%;
+    padding-top: 2px;
+    padding-bottom: 6px;
+    padding-left:10px;
+    text-align: left;
+  }
+  .dynamic-text{
+    margin-top:4%;
+    margin-left: 4%;
+    margin-right: 4%;
+  }
+  .link{
+    font-size: 13px ;
+    text-decoration: underline;
+    color: blue;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 3%;
+    margin-left: 3%;
+    left: 0;
+    
+  }
+ .CR-head{
+  text-align: left;
+  padding-left: 10px;
+ }
+  .card {
+    text-align:center;
+    
+    background: #fff;
+    border-width: 1px;
+    border-color: rgb(227, 237, 247);
+    border-radius: 7px;
+    display: inline-block;
+    height: 400px;
+    margin-top: 4%;
+    margin-left: 2%;
+    margin-right: auto;
+    position: relative;
+    width: 300px;
+  }
+  
+  .card-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+  
+  .card-1:hover {
+    box-shadow: 0 4px 4px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+  .heading{
+    background-color: rgb(65, 92, 131);
+  }

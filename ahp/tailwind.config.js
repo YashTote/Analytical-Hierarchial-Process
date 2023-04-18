@@ -7,6 +7,7 @@ module.exports = {
    "./src/ParentElement.jsx",
    "./src/containers/Modal.js",
    "src/alternatives/pagination.jsx",
+   "src/alternatives/alternatives_table.jsx",
    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {

@@ -5,7 +5,9 @@ import './pagination.css';
 import Crit_Table from "../containers/Criteria_Matrix/crit_table";
 import { useSelector } from "react-redux";
 import CrAndAltValueSlice from "../slices/CrAndAltValueSlice";
+import Alt_Table from "./alternatives_table";
 const items = [...Array(33).keys()];
+
 
 
 function Items({ currentItems }) {
@@ -20,46 +22,41 @@ function Items({ currentItems }) {
   );
 }
 
+function AltBox({total, currentTable}){
 
+  const sample1 = [total];
+  const display_table_title = `Alternative Table Number - ${1+currentTable}`
+  for (let i = 0; i < total; i++) {
+    sample1[i] = <Alt_Table value={total} tableNumber={i+1} />
+  }
 
-
+  return(
+    <div className="box-content h-auto my-3 mx-8 w-auto p-4 border-2 rounded-lg">
+        {display_table_title}
+        {sample1[currentTable]}
+    </div>
+  )
+}
 
 export default function PaginatedItems({ itemsPerPage }) {
-  const cr_obj1 = useSelector((state) => state.CrAndAltValue);
-  console.log(cr_obj1);
- 
-  // We start with an empty list of items.
-  const [currentItems, setCurrentItems] = useState(null);
-  const [pageCount, setPageCount] = useState(0);
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
-  const [itemOffset, setItemOffset] = useState(0);
 
-  useEffect(() => {
-    // Fetch items from another resources.
-    const endOffset = itemOffset + itemsPerPage;
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
-    setCurrentItems(items.slice(itemOffset, endOffset));
-    
-    setPageCount(Math.ceil(items.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
-
-  // Invoke when user click to request another page.
+  
+  const [required, setRequired] = useState(0);
   const handlePageClick = (event) => {
-    const newOffset = event.selected * itemsPerPage % items.length;
-    // console.log(newOffset);
-    // console.log(`User requested page number ${event.selected}, which is offset ${newOffset}`);
-    setItemOffset(newOffset);
-  };
- 
+    const required = event.selected;
+    setRequired(required);
+  }
+
   return (
-    <>     
+    <> 
+     <div className="flex justify-center">    
       <ReactPaginate
+        className="inline-flex"
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         marginPagesDisplayed={2}
-        pageCount={pageCount}
+        pageCount={5}
         previousLabel="<previous"
         pageClassName="inline leading-tight bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
         pageLinkClassName="px-3 py-2"
@@ -74,8 +71,11 @@ export default function PaginatedItems({ itemsPerPage }) {
         activeClassName=" border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
         activeLinkClassName="text-blue-600"
         renderOnZeroPageCount={null}
-      /><Items currentItems={currentItems} />
-      
+      />
+      </div>
+      {/* <Items currentItems={currentItems} /> */}
+      <AltBox total={itemsPerPage} currentTable = {required}/>
+      {/* <Alt_Table value={7}/> */}
     </>
   );
 }
