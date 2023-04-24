@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateEigen } from "../../slices/eigenSlice";
-import { updateCR_Ratio } from "../../slices/CR_RatioSlice";
+import { updateAltCR_Ratio } from "../slices/Alt_CR_RatioSlice";
 import './normal_matrix.css'
 
 
@@ -86,11 +85,10 @@ class TableMultipleRow{
 
 }
 
-export default function Normal_matrix({ value , tableNumber }) {
-  const cr_obj = useSelector((state) => state.crit);
-  console.log(cr_obj)
+export default function Normal_matrix({ value, tableNumber }) {
+  const cr_obj = useSelector((state) => state.AltCrit);
   // const cr_obj1 = useSelector((state) => state.CrAndAltValue);
-  // console.log(cr_obj1);
+  console.log(cr_obj);
 
   const dispatch = useDispatch();
   let PW_matrix = [];
@@ -109,8 +107,8 @@ export default function Normal_matrix({ value , tableNumber }) {
         PW_matrix[i][j] = 1;
         filled+=1;
       }
-      // console.log(`${tableNumber}-${i}-${j}`);
       const crit = cr_obj[`${tableNumber}-${i}-${j}`];
+    //   console.log(crit);
       const crit_name = crit["crit_name_slice"];
       const crit_choice = crit["crit_choice_slice"]; 
         
@@ -118,10 +116,10 @@ export default function Normal_matrix({ value , tableNumber }) {
       if (crit_name && crit_choice) {
         filled+=1;
   
-        if (crit_name[6] === "1") {
-          let number = crit_choice[6];
+        if (crit_name[4] === "1") {
+          let number = crit_choice[4];
 
-          if (crit_choice.length === 8) { 
+          if (crit_choice.length === 6) { 
   // This hadles the case where user selects 1-2-10 or 3-4-11 
   // i.e. double digit criteria options (these are 8 and 9 as value for radio box.)
             number += crit_choice[5];
@@ -134,9 +132,9 @@ export default function Normal_matrix({ value , tableNumber }) {
           temp = temp.toFixed(3);
           PW_matrix[j][i] = Number(temp);
         } else {
-          let number = crit_choice[6];
-          if (crit_choice.length === 8) {
-            number += crit_choice[7];
+          let number = crit_choice[4];
+          if (crit_choice.length === 6) {
+            number += crit_choice[5];
           }
           let temp = Number(number) - 2;
           temp = temp.toFixed(3);
@@ -237,7 +235,7 @@ export default function Normal_matrix({ value , tableNumber }) {
 const display_filled = "This is the current Consistency Ratio:"
 const display_notfilled = "Please complete the choice matrix to see for the consistency ratio."
 let toShowStatus = (total_filled === filled) ;
-useEffect(() => {dispatch(updateCR_Ratio({toShowStatus, C_R}))});
+useEffect(() => {dispatch(updateAltCR_Ratio({tableNumber, toShowStatus, C_R}))});
 const eigenNames = [];
 
 // width,criteriaName,tableData,tableTitle

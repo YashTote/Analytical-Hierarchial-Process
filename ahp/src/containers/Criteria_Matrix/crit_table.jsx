@@ -41,7 +41,7 @@ class TableSingleRow {
   }
 }
 
-export default function Crit_Table({ value }) {
+export default function Crit_Table({ value, tableNumber }) {
   // value = 5;
   let size = (value * (value - 1)) / 2;
 
@@ -53,15 +53,16 @@ export default function Crit_Table({ value }) {
   for (let i = 1; i <= value - 1; i++) {
     for (let j = i + 1; j <= value; j++) {
       let temp = [
-        { key: `${i}-${j}-1`, name: `C-${i}-${j}`, label: ` Crit ${i}` },
-        { key: `${i}-${j}-2`, name: `C-${i}-${j}`, label: ` Crit ${j}` },
+        { key: `${tableNumber}-${i}-${j}-1`, name: `C-${tableNumber}-${i}-${j}`, label: ` Crit ${i}` },
+        { key: `${tableNumber}-${i}-${j}-2`, name: `C-${tableNumber}-${i}-${j}`, label: ` Crit ${j}` },
       ];
       initialNameState.set(`${i}-${j}`, `${i}-${j}-2`);
       crit_name[counter] = temp;
       counter++;
-      const id = `${i}-${j}`;
+      const id = `${tableNumber}-${i}-${j}`;
       const crit_name_slice = undefined;
       const crit_choice_slice = undefined;
+      // console.log(id);
       dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
     }
   }
@@ -72,8 +73,8 @@ export default function Crit_Table({ value }) {
       let temp = new Array(11);
       for (let k = 1; k <= 9; k++) {
         temp[k] = {
-          key: `${i}-${j}-${k + 2}`,
-          name: `O-${i}-${j}`,
+          key: `${tableNumber}-${i}-${j}-${k + 2}`,
+          name: `O-${tableNumber}-${i}-${j}`,
           label: `${k}`,
         };
       }
@@ -87,19 +88,29 @@ export default function Crit_Table({ value }) {
 
   const handleNameChange = (e) => {
     selectName.set(e.target.name, e.target.value);
-    const id = e.target.value.substring(0, 3);
+    const id = e.target.value.substring(0, 5);
+    const first = id.substring(1,2);
+
+    // if(first === "-"){
+    //   id= e.target.value.substring(0,4);
+    // }
     const crit_name_slice = e.target.value;
     const crit_choice_slice = selectChoice.get(`O-${id}`);
-
+  
     dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
   };
 
   const handleChoiceChange = (e) => {
     selectChoice.set(e.target.name, e.target.value);
-    const id = e.target.value.substring(0, 3);
+    const id = e.target.value.substring(0, 5);
+    const first = id.substring(1,2);
+    // if(first === "-"){
+    //   id= e.target.value.substring(0,4);
+    // }
     const crit_choice_slice = e.target.value;
+    // console.log(`C-${id}`);
     const crit_name_slice = selectName.get(`C-${id}`);
-
+    // console.log(crit_name_slice, id);
     dispatch(updateName({ id, crit_name_slice, crit_choice_slice }));
   };
 
@@ -165,7 +176,7 @@ export default function Crit_Table({ value }) {
         <Cr_box/>
       </div>
     
-        <Normal_matrix value={value} />
+        <Normal_matrix value={value} tableNumber={tableNumber} />
     </div>
   );
 }

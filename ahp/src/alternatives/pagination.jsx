@@ -1,33 +1,21 @@
 import ReactPaginate from "react-paginate";
-import React,{useEffect, useState} from "react";
+import React,{useState} from "react";
 import { ReactDOM } from "react-dom";
 import './pagination.css';
-import Crit_Table from "../containers/Criteria_Matrix/crit_table";
-import { useSelector } from "react-redux";
-import CrAndAltValueSlice from "../slices/CrAndAltValueSlice";
 import Alt_Table from "./alternatives_table";
+import { useSelector } from "react-redux";
+import Crit_Table from "../containers/Criteria_Matrix/crit_table";
 const items = [...Array(33).keys()];
 
 
-
-function Items({ currentItems }) {
-  return (
-    <div className="items">
-    {currentItems && currentItems.map((item) => (
-      <div>
-        <h3>Item #{item}</h3>
-      </div>
-    ))}
-      </div>
-  );
-}
-
 function AltBox({total, currentTable}){
-
+ 
+   console.log(total);
   const sample1 = [total];
   const display_table_title = `Alternative Table Number - ${1+currentTable}`
   for (let i = 0; i < total; i++) {
-    sample1[i] = <Alt_Table value={total} tableNumber={i+1} />
+    console.log(currentTable, total)
+    sample1[i] = <Crit_Table value={total} tableNumber={i+1} />
   }
 
   return(
@@ -39,7 +27,8 @@ function AltBox({total, currentTable}){
 }
 
 export default function PaginatedItems({ itemsPerPage }) {
-
+  const total_tables = useSelector(state => state.CrAndAltValue)
+  // console.log(total_tables[0]["AltValue"]);
   
   const [required, setRequired] = useState(0);
   const handlePageClick = (event) => {
@@ -74,7 +63,7 @@ export default function PaginatedItems({ itemsPerPage }) {
       />
       </div>
       {/* <Items currentItems={currentItems} /> */}
-      <AltBox total={itemsPerPage} currentTable = {required}/>
+      <AltBox total={total_tables[0]["AltValue"]} currentTable = {required}/>
       {/* <Alt_Table value={7}/> */}
     </>
   );
