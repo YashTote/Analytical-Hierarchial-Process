@@ -37,8 +37,8 @@ function App() {
     return (
       <div className="App">
         <div>
-          <Crit_Table value={data.crit}/>
-          <EigenTable/>
+          <Crit_Table value={data.crit} tableNumber={0}/>
+          {/* <EigenTable/> */}
         </div>
       </div>
     );

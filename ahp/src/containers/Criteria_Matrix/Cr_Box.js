@@ -5,13 +5,13 @@ import './cr_ratio.css'
 // of the input criteria matrix.
 
 
-export default function Cr_box(){
+export default function Cr_box({tableNumber}){
     const display_filled = "This is the current Consistency Ratio:"
     const display_notfilled = "Please complete the choice matrix to see for the consistency ratio."
     const CR_data = useSelector((state) => state.CR_Ratio);
     
-    const status = (CR_data[0] === undefined) ? false : CR_data[0]["current_status"];
-    const C_R = (CR_data[0] === undefined)? NaN : CR_data[0]["C_R"];
+    const status = (CR_data[tableNumber] === undefined) ? false : CR_data[tableNumber]["current_status"];
+    const C_R = (CR_data[tableNumber] === undefined)? NaN : CR_data[tableNumber]["C_R"];
     const content = (status) ? display_filled : display_notfilled;
     // console.log(status);
     return(

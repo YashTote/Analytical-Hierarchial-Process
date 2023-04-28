@@ -9,7 +9,7 @@ const CrAlt = createSlice({
     getCrAndAltValue: (state, action) => { 
       const {var1, var2} = action.payload;
       state[0] = {"CritValue" : var1 , "AltValue" : var2};
-      console.log(state[0])
+      // console.log(state[0])
     },
   },
 });

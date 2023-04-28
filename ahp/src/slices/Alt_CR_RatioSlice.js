@@ -6,7 +6,7 @@ const CR_Ratio = createSlice({
   name: "CR_Ratio",
   initialState,
   reducers: {
-    updateCR_Ratio: (state, action) => {
+    updateAltCR_Ratio: (state, action) => {
       const {tableNumber, toShowStatus, C_R} = action.payload;
       state[tableNumber] = {"current_status": toShowStatus, "C_R": C_R};
       
@@ -14,5 +14,5 @@ const CR_Ratio = createSlice({
   },
 });
 
-export const { updateCR_Ratio } = CR_Ratio.actions;
+export const { updateAltCR_Ratio } = CR_Ratio.actions;
 export default CR_Ratio.reducer;
