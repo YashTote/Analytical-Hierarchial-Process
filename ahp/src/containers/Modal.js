@@ -2,6 +2,7 @@ import { Fragment, useRef, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { createPortal } from "react-dom";
+import EditNameModal from "../field_names";
 export let crit, alt;
 
 export default function Modal({ isOpen, onExit, closeIntro, obtainData }) {
@@ -47,7 +48,7 @@ export default function Modal({ isOpen, onExit, closeIntro, obtainData }) {
     setData({
       ...data,
       criteria: e.target.value,
-    });
+    });   
   }
   function handleAlternatives(e) {
     setData({
@@ -145,12 +146,13 @@ export default function Modal({ isOpen, onExit, closeIntro, obtainData }) {
                           </div>
 
                           <p className="text-sm text-gray-500">
-                            Please be careful while deciding the numbers. This
+                            Please be careful while deciding the Values and Names. This
                             can't be changed later!
                           </p>
                         </div>
                       </div>
                     </div>
+                    <EditNameModal critValue={data.criteria} altValue={data.alternatives}/>
                   </div>
                   <div className=" bg-slate-100 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                     <button

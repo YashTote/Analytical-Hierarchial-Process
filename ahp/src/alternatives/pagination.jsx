@@ -12,15 +12,21 @@ function AltBox({total, currentTable}){
  
    console.log(total);
   const sample1 = [total];
-  const display_table_title = `Alternative Table Number - ${1+currentTable}`
+  
+  let jsonCriteria = localStorage.getItem('jsonCriteria');
+
+  jsonCriteria = JSON.parse(jsonCriteria);
+  console.log(jsonCriteria);
+
+  const display_table_title = `Compare the Alternatives on the basis of :  ${jsonCriteria[currentTable + 1]}`
   for (let i = 0; i < total; i++) {
     console.log(currentTable, total)
-    sample1[i] = <Crit_Table value={total} tableNumber={i+1} />
+    sample1[i] = <Crit_Table key={i} value={total} tableNumber={i+1} />
   }
 
   return(
     <div className="box-content h-auto my-3 mx-8 w-auto p-4 border-2 rounded-lg">
-        {display_table_title}
+        <div className = "bg-cyan-200 headingText rounded">{display_table_title}</div>
         {sample1[currentTable]}
     </div>
   )
@@ -45,7 +51,7 @@ export default function PaginatedItems({ itemsPerPage }) {
         onPageChange={handlePageClick}
         pageRangeDisplayed={2}
         marginPagesDisplayed={2}
-        pageCount={5}
+        pageCount={total_tables[0]["CritValue"]}
         previousLabel="<previous"
         pageClassName="inline leading-tight bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
         pageLinkClassName="px-3 py-2"

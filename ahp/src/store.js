@@ -8,6 +8,7 @@ import CrAndAltReducer from "./slices/CrAndAltValueSlice"
 import AltTableReducer from './slices/altTableSlice'
 import AltCrRatioSlice from './slices/Alt_CR_RatioSlice'
 
+
 const persistConfig = {
     key: 'root',
     storage,
@@ -20,6 +21,7 @@ const rootReducer  = combineReducers({
     eigenStore : eigenReducer,
     CrAndAltValue : CrAndAltReducer,
     AltCrit : AltTableReducer,
+    
 });
 
 const persistedReducer =  persistReducer(persistConfig, rootReducer);
