@@ -10,6 +10,16 @@ export default function Intro({closeIntro , obtainData}) {
     setPopup(exit);
   }
   
+  function deleteDatabase(){
+     setPopup(true);
+     fetch('http://127.0.0.1:8000/dataHandle/deleteRecords/' ,{
+      method: 'DELETE',
+     })
+    //  .then(response => response.json())
+     .then(Response => console.log(Response))
+     .catch(error => console.error(error));
+  }
+  
     return (
       
       <div className="bg-white">
@@ -40,7 +50,7 @@ export default function Intro({closeIntro , obtainData}) {
               </h2>
               
               <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                <button onClick={()=>{setPopup(true)}} href="#"
+                <button onClick={deleteDatabase} href="#"
                   className="rounded-md bg-white px-3.5 py-1.5 text-base font-semibold leading-7 text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                   Get started

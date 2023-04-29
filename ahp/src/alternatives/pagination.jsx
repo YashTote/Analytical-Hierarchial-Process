@@ -8,10 +8,10 @@ import Crit_Table from "../containers/Criteria_Matrix/crit_table";
 const items = [...Array(33).keys()];
 
 
-function AltBox({total, currentTable}){
+function AltBox({total,totalTables, currentTable}){
  
-   console.log(total);
-  const sample1 = [total];
+  //  console.log(total);
+  const sample1 = [totalTables];
   
   let jsonCriteria = localStorage.getItem('jsonCriteria');
 
@@ -19,8 +19,8 @@ function AltBox({total, currentTable}){
   console.log(jsonCriteria);
 
   const display_table_title = `Compare the Alternatives on the basis of :  ${jsonCriteria[currentTable + 1]}`
-  for (let i = 0; i < total; i++) {
-    console.log(currentTable, total)
+  for (let i = 0; i < totalTables; i++) {
+    // console.log(currentTable, total)
     sample1[i] = <Crit_Table key={i} value={total} tableNumber={i+1} />
   }
 
@@ -69,7 +69,7 @@ export default function PaginatedItems({ itemsPerPage }) {
       />
       </div>
       {/* <Items currentItems={currentItems} /> */}
-      <AltBox total={total_tables[0]["AltValue"]} currentTable = {required}/>
+      <AltBox total={total_tables[0]["AltValue"]} totalTables={total_tables[0]["CritValue"]} currentTable = {required}/>
       {/* <Alt_Table value={7}/> */}
     </>
   );

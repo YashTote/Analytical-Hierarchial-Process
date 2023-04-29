@@ -203,7 +203,7 @@ export default function Normal_matrix({ value, tableNumber }) {
     temp = temp.toFixed(3);
     eigen_vector[i] = Number(temp);
   }
-  console.log(eigen_vector);
+  // console.log(eigen_vector);
   // dispatch(updateEigen(eigen_vector))
   // calculation weighted sum matrix and Weighted sum
   const W_matrix = JSON.parse(JSON.stringify(N_matrix));
@@ -256,7 +256,7 @@ export default function Normal_matrix({ value, tableNumber }) {
 
   let jsonCriteria = localStorage.getItem("jsonCriteria");
   jsonCriteria = JSON.parse(jsonCriteria);
-  console.log(jsonCriteria);
+  // console.log(jsonCriteria);
   let jsonAlternative = localStorage.getItem("jsonAlternative");
   jsonAlternative = JSON.parse(jsonAlternative);
 
@@ -394,13 +394,14 @@ export default function Normal_matrix({ value, tableNumber }) {
   // )
   // console.log((PWTable_component));
   return (
-    <>
+    <div>
       {/* {temp} */}
-      <button onClick={postCriteriaData}>Send the post ToTheBackend</button>
+      <button className="rounded-md bg-cyan-200  w-96 h-10 px-1  my-6 text-sm font-medium
+           text-black hover:bg-opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={postCriteriaData}>Send to the Database (After Green CR Ratio)</button>
       {EigenTable.TableStruct()}
       {PWTable.MultiTableStruct()}
 
       {N_matrixTable.MultiTableStruct()}
-    </>
+    </div>
   );
 }
