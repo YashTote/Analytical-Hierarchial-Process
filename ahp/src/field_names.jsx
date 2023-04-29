@@ -81,6 +81,7 @@ export default function EditNameModal({ critValue, altValue }) {
    setIsOpen(false);
    let jsonCriteria = JSON.stringify(criteriaName);
    let jsonAlternative = JSON.stringify(alternativeName);
+//    console.log(jsonCriteria)
    localStorage.setItem('jsonCriteria', jsonCriteria);
    localStorage.setItem('jsonAlternative', jsonAlternative);
  }

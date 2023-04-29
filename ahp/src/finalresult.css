@@ -8,3 +8,8 @@
 .priority-text{
     text-align: center;
 }
+.chartCenter{
+    display: flex;
+    justify-content: center;
+    margin-top: 6%;
+}
