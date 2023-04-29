@@ -23,11 +23,11 @@ class Alternative_Eigen(models.Model):
         fieldName = models.CharField(max_length=30)
         fieldChoice = models.IntegerField()
         notknown= models.IntegerField(null=True)
-        value = models.IntegerField()
+        value = models.DecimalField(max_digits=6, decimal_places=6)
 
 
 class Criteria_Table_Eigen(models.Model):
      fieldName = models.CharField(max_length=30)
      fieldChoice = models.IntegerField()
-     value = models.IntegerField()
+     value = models.DecimalField(max_digits=6, decimal_places=6)
      notknown= models.IntegerField(null=True)

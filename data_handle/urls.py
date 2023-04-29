@@ -7,6 +7,7 @@ urlpatterns = [
     path('criteria/add/', views.criteria_add),
     path('alternativeEigen/add/', views.alternative_eigen_add ),
     path('criteriaEigen/add/', views.criteria_eigen_add),
+    path('deleteRecords/', views.records_delete),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
