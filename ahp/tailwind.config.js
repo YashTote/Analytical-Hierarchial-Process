@@ -9,7 +9,7 @@ module.exports = {
    "src/alternatives/pagination.jsx",
    "src/alternatives/alternatives_table.jsx",
    "./src/**/*.{js,jsx,ts,tsx}",
-  //  "./src/alternatives/pagination.jsx",
+   "./src/finalresult.js",
   ],
   theme: {
     extend: {},
