@@ -57,8 +57,8 @@ export const altOptions = {
 
 
 function CreateTable({ data1, data2, name1, name2 }) {
-//   console.log(data1, data2);
-//   console.log(name1, name2);
+  console.log(data1, data2);
+  // console.log(name1, name2);
   const critSize = data1.length,
     altSize = data2.length / data1.length;
 
