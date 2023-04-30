@@ -32,7 +32,7 @@ The Analytical Hierarchy Process was developed by Thomas M. Saaty. This is a **D
 
 1. Click on the ***Home*** Tab. Click ***Get Started*** .
 
-2. This will open a Modal Box. For the sake of this example you may enter the data from the Criteria as 4 and Alternative as 5.
+2. This will open a Modal Box. For the sake of this example you may enter the Criteria as 4 and Alternative as 5.
    
 
 3. After entering the Criteria and Alternative values click on `Edit the names of Criteria and Alternatives` . Enter the names of you choice. For now change all the names of all the Criterias and Alternatives ***compulsorily***. Hit `Confirm`. Again hit `Confirm`.
