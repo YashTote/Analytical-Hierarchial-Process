@@ -4,9 +4,9 @@ import AppRouter from './AppRouter'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 const navigation = [
-    { name: 'Home', href: 'http://localhost:3000/home', current: true },
-    { name: 'Alternatives', href: 'http://localhost:3000/alternatives', current: false },
-    { name: 'Final Result', href: 'http://localhost:3000/finalResult', current: false },
+    { name: 'Home', href: '/home', current: true },
+    { name: 'Alternatives', href: '/alternatives', current: false },
+    { name: 'Final Result', href: '/finalResult', current: false },
   ]
   
   function classNames(...classes) {
