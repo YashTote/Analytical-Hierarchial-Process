@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateEigen } from "../../slices/eigenSlice";
 import { updateCR_Ratio } from "../../slices/CR_RatioSlice";
@@ -105,6 +105,7 @@ class TableMultipleRow {
 
 export default function Normal_matrix({ value, tableNumber }) {
   const cr_obj = useSelector((state) => state.crit);
+  const [disableButton , setDisableButton] = useState(false);
   // console.log(cr_obj)
   // const cr_obj1 = useSelector((state) => state.CrAndAltValue);
   // console.log(cr_obj1);
@@ -322,8 +323,9 @@ export default function Normal_matrix({ value, tableNumber }) {
   };
 
   const postCriteriaData = () => {
+    setDisableButton(true); 
     const objJson = new Object();
-
+     
     for (var i = 0; i < eigen_vector.length - 1; i++) {
       let name1 = "ff";
       if (tableNumber == 0) {
@@ -397,7 +399,7 @@ export default function Normal_matrix({ value, tableNumber }) {
     <div>
       {/* {temp} */}
       <button className="rounded-md bg-cyan-200  w-96 h-10 px-1  my-6 text-sm font-medium
-           text-black hover:bg-opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={postCriteriaData}>Send to the Database (After Green CR Ratio)</button>
+           text-black hover:bg-opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled={disableButton} onClick={postCriteriaData}>Send to the Database (After Green CR Ratio)</button>
       {EigenTable.TableStruct()}
       {PWTable.MultiTableStruct()}
 
