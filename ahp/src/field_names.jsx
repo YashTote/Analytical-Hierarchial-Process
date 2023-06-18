@@ -85,6 +85,7 @@ export default function EditNameModal({ critValue, altValue }) {
    localStorage.setItem('jsonCriteria', jsonCriteria);
    localStorage.setItem('jsonAlternative', jsonAlternative);
  }
+ 
 //  useEffect(()) let jsonCriteria = JSON.stringify(criteriaName);
 //  let jsonAlternative = JSON.stringify(alternativeName);
 // //    console.log(jsonCriteria)
@@ -93,12 +94,18 @@ export default function EditNameModal({ critValue, altValue }) {
 
  console.log(criteriaName)
  console.log(alternativeName)
+
   function closeModal() {
     setIsOpen(false);
   }
 
   function openModal() {
     setIsOpen(true);
+    let jsonCriteria = JSON.stringify(criteriaName);
+    let jsonAlternative = JSON.stringify(alternativeName);
+ //    console.log(jsonCriteria)
+    localStorage.setItem('jsonCriteria', jsonCriteria);
+    localStorage.setItem('jsonAlternative', jsonAlternative);
   }
   return (
     <>
