@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { createPortal } from "react-dom";
 import EditNameModal from "../field_names";
 export let crit, alt;
@@ -43,18 +42,37 @@ export default function Modal({ isOpen, onExit, closeIntro, obtainData }) {
       alert("Please enter values between 1 and 9 only.");
     }
   });
+  
+
+
 
   function handleCriteria(e) {
     setData({
       ...data,
       criteria: e.target.value,
-    });   
+    });
+    var criteriaN = new Array();
+    for (let i = 0; i < e.target.value; i++) {
+      if(i===0) criteriaN.push(null);
+      criteriaN.push(`Crit ${i + 1}`);
+    }
+    let jsonCriteria = JSON.stringify(criteriaN);
+    localStorage.setItem("jsonCriteria", jsonCriteria);
   }
   function handleAlternatives(e) {
     setData({
       ...data,
       alternatives: e.target.value,
     });
+
+    var alternativeN = new Array();
+    for (let i = 0; i < e.target.value; i++) {
+      if(i===0) alternativeN.push(null);
+      console.log(alternativeN);
+      alternativeN.push(`Alt ${i + 1}`);
+    }
+    let jsonAlternative = JSON.stringify(alternativeN);
+    localStorage.setItem('jsonAlternative', jsonAlternative);
   }
   crit = data.criteria;
   alt = data.alternatives;
