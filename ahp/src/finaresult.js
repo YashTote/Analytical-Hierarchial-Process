@@ -142,20 +142,28 @@ export default function FinalResult() {
   useEffect(() => {
     async function fetchCritAlt() {
       try {
-        const [critR, altR] = await Promise.all([
-          fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
-            method: "GET",
-          }),
-          fetch("http://127.0.0.1:8000/dataHandle/alternativeEigen/add/", {
-            method: "GET",
-          }),
-        ]);
+        // const [critR, altR] = await Promise.all([
+        //   fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
+        //     method: "GET",
+        //   }),
+        //   fetch("http://127.0.0.1:8000/dataHandle/alternativeEigen/add/", {
+        //     method: "GET",
+        //   }),
+        // ]);
 
-        const critResponse = await critR.json();
-        const altResponse = await altR.json();
+        // const critResponse = await critR.json();
+        let critResponse =  await  localStorage.getItem('localCriteriaEigen');
+        critResponse = JSON.parse(critResponse);
+        console.log(critResponse);
+
+        // const altResponse = await altR.json();
+        let altResponse = await localStorage.getItem('localAlternativeEigen');
+        altResponse = JSON.parse(altResponse);
+        console.log(altResponse);
         setRenderData({ critResponse, altResponse });
 
-      } catch (error) {
+      }
+       catch (error) {
         console.error(error);
       }
     }
@@ -182,8 +190,14 @@ export default function FinalResult() {
       critName.push(renderData.critResponse[key]["fieldName"]);
     }
     for (let key in renderData.altResponse) {
-      altArray.push(Number(renderData.altResponse[key]["value"]));
-      altName.push(renderData.altResponse[key]["fieldName"]);
+      const tempArray = renderData.altResponse[key];
+      for(let newkey in tempArray){
+      altArray.push(Number(tempArray[newkey]["value"]));
+      altName.push(tempArray[newkey]["fieldName"]);
+      }
+      // console.log(renderData.altResponse[key]);
+      // altArray.push(Number(renderData.altResponse[key]["value"]));
+      // altName.push(renderData.altResponse[key]["fieldName"]);
     }
 
     return (

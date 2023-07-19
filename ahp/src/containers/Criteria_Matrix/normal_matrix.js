@@ -303,28 +303,28 @@ export default function Normal_matrix({ value, tableNumber }) {
   );
   // async function fetchData(){
 
-  const postData = () => {
-    const sendToTheBackend = {
-      id: 123,
-      fieldChoice: "1-2",
-      alternativeChoice: "2",
-      rating: "5",
-    };
-    fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(sendToTheBackend),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error(error));
-  };
+  // const postData = () => {
+  //   const sendToTheBackend = {
+  //     id: 123,
+  //     fieldChoice: "1-2",
+  //     alternativeChoice: "2",
+  //     rating: "5",
+  //   };
+  //   fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(sendToTheBackend),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data))
+  //     .catch((error) => console.error(error));
+  // };
 
   const postCriteriaData = () => {
     setDisableButton(true); 
-    const objJson = new Object();
+    const objJson = new Array();
      
     for (var i = 0; i < eigen_vector.length - 1; i++) {
       let name1 = "ff";
@@ -358,27 +358,46 @@ export default function Normal_matrix({ value, tableNumber }) {
     }
     // console.log(objJson);
     if (tableNumber == 0) {
-      fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(objJson),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error(error));
+      console.log(objJson);
+      let localCriteriaEigen = JSON.stringify(objJson);
+      localStorage.setItem('localCriteriaEigen',localCriteriaEigen);
+      console.log(localCriteriaEigen);
+      // fetch("http://127.0.0.1:8000/dataHandle/criteriaEigen/add/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(objJson),
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => console.log(data))
+      //   .catch((error) => console.error(error));
     } else {
-      fetch("http://127.0.0.1:8000/dataHandle/alternativeEigen/add/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(objJson),
-      })
-        .then((response) => response.json())
-        .then((data) => console.log(data))
-        .catch((error) => console.error(error));
+      if(!localStorage.getItem('localAlternativeEigen')){
+        console.log(objJson);
+        let newArray = new Array();
+        newArray[0] = objJson; 
+        let localAlternativeEigen = JSON.stringify(newArray);
+        localStorage.setItem('localAlternativeEigen', localAlternativeEigen);
+      }
+      else{
+      let temp = JSON.parse(localStorage.getItem('localAlternativeEigen'));
+      console.log(temp);
+      temp.push(objJson);
+      console.log(temp);
+      console.log(JSON.stringify(temp));      
+      localStorage.setItem('localAlternativeEigen', JSON.stringify(temp));
+      } 
+      // fetch("http://127.0.0.1:8000/dataHandle/alternativeEigen/add/", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(objJson),
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => console.log(data))
+      //   .catch((error) => console.error(error));
     }
   };
 
@@ -400,10 +419,10 @@ export default function Normal_matrix({ value, tableNumber }) {
       {/* {temp} */}
       <button className="rounded-md bg-cyan-200  w-96 h-10 px-1  my-6 text-sm font-medium
            text-black hover:bg-opacity-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" disabled={disableButton} onClick={postCriteriaData}>Send to the Database (After Green CR Ratio)</button>
-      {EigenTable.TableStruct()}
+      
       {PWTable.MultiTableStruct()}
-
       {N_matrixTable.MultiTableStruct()}
+      {EigenTable.TableStruct()}
     </div>
   );
 }
