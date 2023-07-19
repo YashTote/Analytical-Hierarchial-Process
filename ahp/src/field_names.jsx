@@ -79,6 +79,8 @@ export default function EditNameModal({ critValue, altValue }) {
 
  const handleConfirm = () =>{
    setIsOpen(false);
+   console.log(criteriaName);
+   console.log(alternativeN);
    let jsonCriteria = JSON.stringify(criteriaName);
    let jsonAlternative = JSON.stringify(alternativeName);
 //    console.log(jsonCriteria)

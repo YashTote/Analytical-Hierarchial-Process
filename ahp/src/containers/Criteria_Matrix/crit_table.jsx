@@ -63,10 +63,10 @@ export default function Crit_Table({ value, tableNumber }) {
   const dispatch = useDispatch();
   let jsonCriteria = localStorage.getItem('jsonCriteria');
   jsonCriteria = JSON.parse(jsonCriteria);
-  // console.log(printthis);
+
   let jsonAlternative = localStorage.getItem('jsonAlternative');
   jsonAlternative = JSON.parse(jsonAlternative);
-
+  console.log(jsonAlternative)
   const initialNameState = new Map();
   let counter = 1;
   for (let i = 1; i <= value - 1; i++) {

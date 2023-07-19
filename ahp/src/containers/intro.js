@@ -1,8 +1,6 @@
 /* This example requires Tailwind CSS v3.0+ */
 import React, {useState} from 'react';
 import Modal from './Modal';
-import Homemain from './homemain';
-import * as data from './Modal';
 export default function Intro({closeIntro , obtainData}) {
   const [popup, setPopup] = useState(false);
   function onExit(exit)
@@ -12,12 +10,17 @@ export default function Intro({closeIntro , obtainData}) {
   
   function deleteDatabase(){
      setPopup(true);
-     fetch('http://127.0.0.1:8000/dataHandle/deleteRecords/' ,{
-      method: 'DELETE',
-     })
-    //  .then(response => response.json())
-     .then(Response => console.log(Response))
-     .catch(error => console.error(error));
+    //  fetch('http://127.0.0.1:8000/dataHandle/deleteRecords/' ,{
+    //   method: 'DELETE',
+    //  })
+    // //  .then(response => response.json())
+    //  .then(Response => console.log(Response))
+    //  .catch(error => console.error(error));
+    if(localStorage.getItem('localAlternativeEigen')){
+      localStorage.removeItem('localAlternativeEigen');
+    }
+    if(localStorage.getItem('localCriteriaEigen'))
+      localStorage.removeItem('localCriteriaEigen');
   }
   
     return (
