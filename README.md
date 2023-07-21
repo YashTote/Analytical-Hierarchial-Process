@@ -66,3 +66,5 @@ The Analytical Hierarchy Process was developed by Thomas M. Saaty. This is a **D
       ![Final Result Image 1](ahp/src/images/Image7.png)
       
       ![Final Result Image 2](ahp/src/images/Image8.png)
+    
+8. This repository is up for contributions. You may suggest new features and bug fixes.
