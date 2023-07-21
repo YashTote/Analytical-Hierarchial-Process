@@ -57,14 +57,15 @@ The Analytical Hierarchy Process was developed by Thomas M. Saaty. This is a **D
       
       ![Final Result Image 2](ahp/src/images/Image8.png)
 
- 7. This project primarily use ReactJs as its main framework that enables this application to maintain its responsive and dynamic nature.
+ 7. This project primarily uses ReactJs as its main framework that enable this application to maintain its responsive and dynamic nature.
     
- 9. For state management React - Redux is used as the main state management tool.
+ 9. For state management React-Redux is used as the main state management tool. Helps in managing the global scope of the Application.
      
- 11. For routing and URL management react-router is the primary liabrary used.
+ 11. For routing and URL management, react-router is the primary liabrary used.
    
- 12. The LocalStorage is used for pertsistance of the data like Criteria Names and Alternative Names.
+ 12. The LocalStorage is used for pertsistance of the data like Criteria Names and Alternative Names.You can look for them from the applications tab of you 
+     console.
      
-     Also the Eigen vector Array is sent to the local storage in order to enhance cross browser compatibility.
+     Also the Eigen vector Array of both the criteria and Alternatives (all of them) is sent to the local storage in order to enhance cross browser compatibility.
      
  13. This repository is up for contributions. You may suggest new features and bug fixes.
