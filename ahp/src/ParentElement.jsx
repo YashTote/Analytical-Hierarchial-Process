@@ -65,7 +65,7 @@ function ParentElement() {
                 </div>
               </div>
               <div className='basic-1/2 text-gray-300 hover:bg-gray-700 hover:text-white'>
-                     <h1>Created by M.M.Kapote</h1>
+                     {/* <h1>Created by M.M.Kapote</h1> */}
                   </div>
             </div> 
             {/* <Link></Link> */}
