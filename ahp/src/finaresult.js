@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
+import './containers/Criteria_Matrix/normal_matrix.css';
 import "./finalresult.css";
+
 
 import {
   Chart as ChartJS,
@@ -24,6 +26,40 @@ ChartJS.register(
   Filler,
   Legend
 );
+class TableSingleRow {
+
+  constructor(width, criteriaName, tableData, tableTitle){
+    this.width = width;
+    this.criteriaName = criteriaName;
+    this.tableData = tableData;
+    this.tableTitle = tableTitle;
+  }
+  //If the criteriaName comes as an Array, we can easily map over each element and create an variable that holds the thead structure.
+
+   TableStruct(){
+    const titleRow = this.criteriaName.map(e =>(<th className="border border-slate-600 bg-slate-300">{e}</th>));
+    const valueRow = this.tableData.map(e => (<td className="centreContent border border-slate-700 bg-slate-50 ">{e}</td>))
+    const tableStruct = (
+      <div className="TableSingleRow font-serif">
+        <div className="centreContent text-2xl font-semibold">{this.tableTitle}</div>
+    <table className="tableStruct w-2/3 text-lg border-collapse border border-slate-500 bg-slate-300">
+         <thead>
+           <tr>
+             <th className="border w-1/5 border-slate-600 bg-slate-300 ">Criteria Name</th>
+              {titleRow}
+           </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td className="centreContent border font-semibold border-slate-600 bg-slate-300">Values</td>
+              {valueRow}
+          </tr>
+         </tbody>
+    </table></div>) 
+    
+    return tableStruct;
+  }
+}
 
 export const critOptions = {
   responsive: true,
@@ -57,7 +93,12 @@ export const altOptions = {
 
 
 function CreateTable({ data1, data2, name1, name2 }) {
-  console.log(data1, data2);
+ 
+
+  for(let i = 0; i<data1.length; i++){
+    data1[i] = Number(data1[i].toFixed(3));
+  }
+
   // console.log(name1, name2);
   const critSize = data1.length,
     altSize = data2.length / data1.length;
@@ -69,10 +110,11 @@ function CreateTable({ data1, data2, name1, name2 }) {
     let index = i;
     for (let j = 0; j < critSize; j++) {
       finalPriorityVector[i] += data1[j] * data2[index];
+      finalPriorityVector[i] = Number(finalPriorityVector[i].toFixed(3));
       index += altSize;
     }
   }
-//   console.log(finalPriorityVector);
+ //  console.log(finalPriorityVector);
   let maxPriority = Math.max(...finalPriorityVector);
   let maxPriorityName;
   let index = 0;
@@ -114,6 +156,10 @@ function CreateTable({ data1, data2, name1, name2 }) {
     ],
   };
 
+ const altTableData = new TableSingleRow(altSize, altChartName , finalPriorityVector, "Alternative Priorities");
+ 
+ const critTableData = new TableSingleRow(critSize, name1 , data1, "Criteria Priorities");
+
 
   return (<div className="p-6" >
     <div className=" flex flex-col items-center justify-center ">
@@ -125,9 +171,13 @@ function CreateTable({ data1, data2, name1, name2 }) {
       </div>
       
     </div>
+    
     <div className="px-44  chartCenter "><Line options={altOptions} data={altChartData} /></div>
+    {altTableData.TableStruct()}
     <hr/>
+    
     <div className="px-44 chartCenter"><Line options={critOptions} data={critChartData} /></div>
+    {critTableData.TableStruct()}
     </div>
   );
 }
@@ -154,12 +204,12 @@ export default function FinalResult() {
         // const critResponse = await critR.json();
         let critResponse =  await  localStorage.getItem('localCriteriaEigen');
         critResponse = JSON.parse(critResponse);
-        console.log(critResponse);
+        
 
         // const altResponse = await altR.json();
         let altResponse = await localStorage.getItem('localAlternativeEigen');
         altResponse = JSON.parse(altResponse);
-        console.log(altResponse);
+     
         setRenderData({ critResponse, altResponse });
 
       }
