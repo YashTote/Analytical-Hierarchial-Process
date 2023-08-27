@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { updateEigen } from "../../slices/eigenSlice";
 import { updateCR_Ratio } from "../../slices/CR_RatioSlice";
 import "./normal_matrix.css";
 
