@@ -26,7 +26,7 @@ class TableSingleRow {
           <thead>
             <tr>
               <th className="border w-1/5 border-slate-600 bg-slate-300 ">
-                Criteria Name
+                Name
               </th>
               {titleRow}
             </tr>
